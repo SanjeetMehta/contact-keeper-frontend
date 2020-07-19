@@ -308,6 +308,7 @@ input[type='text'],
 input[type='email'],
 input[type='password'],
 input[type='date'],
+input[type='phone'],
 select,
 textarea {
   display: block;
