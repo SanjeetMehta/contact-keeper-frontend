@@ -18,7 +18,7 @@ const ContactItem = ({contact}) => {
                     style={{float: "right"}}
                     className={
                         "badge " +
-                        (type == "professional"
+                        (type === "professional"
                             ? "badge-success"
                             : "badge-primary")
                     }
