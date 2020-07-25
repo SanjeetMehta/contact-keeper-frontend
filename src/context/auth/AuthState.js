@@ -1,19 +1,18 @@
-import React, {useReducer} from "react";
-import AuthContext from "./authContext";
-import authReducer from "./authReducer";
 import axios from "axios";
+import React, {useReducer} from "react";
 import setAuthToken from "../../utils/setAuthToken";
 import {
-    REGISTER_SUCCESS,
-    REGISTER_FAILL,
-    USER_LOADED,
     AUTH_ERROR,
-    LOGIN_FAIL,
-    LOGOUT,
     CLEAR_ERRORS,
+    LOGIN_FAIL,
+    LOGIN_SUCCESS,
+    LOGOUT,
     REGISTER_FAIL,
-    LOGIN_SUCCESS
+    REGISTER_SUCCESS,
+    USER_LOADED
 } from "../types";
+import AuthContext from "./authContext";
+import authReducer from "./authReducer";
 const BASE_URL = "http://localhost:8083";
 
 const AuthState = props => {
