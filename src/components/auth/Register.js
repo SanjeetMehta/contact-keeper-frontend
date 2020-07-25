@@ -2,19 +2,24 @@ import React, {useState, useContext, useEffect} from "react";
 import AlertContext from "../../context/alert/alertContext";
 import AuthContext from "../../context/auth/authContext";
 
-const Register = () => {
+const Register = props => {
     const alertContext = useContext(AlertContext);
     const authContext = useContext(AuthContext);
 
     const {setAlert} = alertContext;
-    const {register, error, clearErrors} = authContext;
+    const {register, error, clearErrors, isAuthenticated} = authContext;
 
     useEffect(() => {
+        if (isAuthenticated) {
+            props.history.push("/");
+        }
         if (error === "User already present") {
             setAlert(error, "danger");
             clearErrors();
         }
-    }, [error]);
+
+        // eslint-disable-next-line
+    }, [error, isAuthenticated, props.history]);
 
     const [user, setUser] = useState({
         name: "",
@@ -28,7 +33,7 @@ const Register = () => {
 
     const onSubmit = e => {
         e.preventDefault();
-        if (name === "" || email === "" || password == "") {
+        if (name === "" || email === "" || password === "") {
             setAlert("Please enter all fields", "danger");
         } else if (password !== password2) {
             setAlert("Password do not match", "danger");
@@ -76,7 +81,7 @@ const Register = () => {
                         value={password}
                         onChange={onChange}
                         required
-                        minLength="6"
+                        minLength="7"
                     />
                 </div>
 
@@ -88,7 +93,7 @@ const Register = () => {
                         value={password2}
                         onChange={onChange}
                         required
-                        minLength="6"
+                        minLength="7"
                     />
                 </div>
                 <input
